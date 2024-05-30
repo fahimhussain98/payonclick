@@ -26,11 +26,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
      // home: HomePage(),
-      home: Loginpage(),
+    //  home: Loginpage(),
      //   home:home()
       // home: operatorscreen(),
       //home: operatorscreen2(),
-      //home:  NavBar(),
+      home:  NavBar(), //update huya 
      // home: splashScreen(), //after add the splashScreen
      // home: AirtelScreen(),
      // home: JioScreen(),
