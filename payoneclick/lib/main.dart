@@ -30,11 +30,11 @@ class MyApp extends StatelessWidget {
      //   home:home()
       // home: operatorscreen(),
       //home: operatorscreen2(),
-      home:  NavBar(), //update huya 
+    //  home:  NavBar(), 
      // home: splashScreen(), //after add the splashScreen
      // home: AirtelScreen(),
      // home: JioScreen(),
-      //home: Testingpage(),
+      home: Testingpage(),//ab ye me git se update kr rha hun check kro 3:44 mint
     );
   }
 }
