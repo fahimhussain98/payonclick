@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:payoneclick/screens/Reports.dart';
 import 'package:payoneclick/splashScreen/splashScreen.dart';
 
-
-
-
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -24,20 +19,20 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-     // home: HomePage(),
-     // home: Loginpage(),
-     //   home:home()
+      // home: HomePage(),
+      // home: Loginpage(),
+      //   home:home()
       // home: operatorscreen(),
       //home: operatorscreen2(),
-     // home:  NavBar(),
+      // home:  NavBar(),
       home: splashScreen(), //this is ready page.
-     // home: AirtelScreen(),
-     // home: JioScreen(),
+      // home: AirtelScreen(),
+      // home: JioScreen(),
       //home: Testingpage(),
-     // home: walletScreen(),
+      // home: walletScreen(),
       //home: ProfilleScreen(),
       //home: SuppordScreen(),
-      //home:ReportScreen() // this is checking for pull the request in my C laptop
+      //home:ReportScreen() // this working or not
     );
   }
 }
