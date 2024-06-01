@@ -2,13 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
+import 'package:payoneclick/Drawer/MyCustomDrawer.dart';
 import 'package:payoneclick/screens/AirtelScreen.dart';
 import 'package:payoneclick/screens/JioScreen.dart';
 import 'package:payoneclick/screens/Loginpage.dart';
 
 class home extends StatefulWidget {
-  final String? WalletBalance;
-  const home({super.key, this.WalletBalance});
+ // final String? WalletBalance;
+  final LoginModel? loginModelData;
+
+  // const home({super.key,
+  //   //this.WalletBalance,
+  //   this.loginModelData});
+  const home({Key? key, required this.loginModelData}) : super(key: key);
+
 
   @override
   State<home> createState() => _homeState();
@@ -17,21 +24,26 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   LoginModel loginModel = LoginModel();
 
+
   @override
   Widget build(BuildContext context) {
     bool showStateTextField = true;
     var dropdownValue;
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            // Perform logout actions here if needed
-            // Navigate back to the login screen
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const Loginpage()),
-                  (Route<dynamic> route) => false,
+        leading:  Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Stack(children:[
+                Image.asset('image/circleForDrawer.png'),
+                Padding(
+                  padding: const EdgeInsets.only(left: 7,top: 5),
+                  child: Icon(Icons.sort,color: Colors.white,size: 25,),
+                )
+              ]),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
             );
           },
         ),
@@ -70,6 +82,7 @@ class _homeState extends State<home> {
           ),
         ),
       ),
+      drawer: MyCustomDrawer(),  //this is drawer class
       // drawer:
       // Drawer(
       //   backgroundColor: Colors.purple[50],
@@ -439,8 +452,9 @@ class _homeState extends State<home> {
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>
                                         JioScreen(
                                           showStateTextField: true,
-                                          // WalletBalance:loginModel.data!.walletBalance,
-                                          WalletBalance: widget.WalletBalance,
+                                           //WalletBalance:loginModel.data!.walletBalance,
+                                         // WalletBalance: widget.WalletBalance,
+                                            loginModelData: widget.loginModelData
                                         ),),
 
                                     );
@@ -478,7 +492,11 @@ class _homeState extends State<home> {
                               children:[
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> JioScreen(showStateTextField: false,WalletBalance: widget.WalletBalance,)));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> JioScreen(
+                                      showStateTextField: false,
+                                        loginModelData: widget.loginModelData
+                                     // WalletBalance: widget.WalletBalance,
+                                    )));
                                     setState(() {
                                       showStateTextField = false; // Show the state text field
                                     });

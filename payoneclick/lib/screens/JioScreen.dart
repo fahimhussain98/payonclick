@@ -4,10 +4,17 @@ import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
 
 class JioScreen extends StatefulWidget {
   final bool showStateTextField;
-  final String? WalletBalance; //isse double krna aa kr
-
-  const JioScreen({Key? key, this.showStateTextField = true,
-    required this.WalletBalance
+ // final String? WalletBalance;
+  final LoginModel? loginModelData; //isse sara data aa rhe hai
+  // const JioScreen({
+  //   Key? key, this.showStateTextField = true,
+  //  //  this.WalletBalance,
+  //   this.loginModelData,
+  // }) : super(key: key);
+  const JioScreen({
+    Key? key,
+    required this.showStateTextField,
+    required this.loginModelData,
   }) : super(key: key);
 
 
@@ -18,7 +25,6 @@ class JioScreen extends StatefulWidget {
 class _JioScreenState extends State<JioScreen> {
   var showStateTextField = false;
   var dropdownValue;
-  LoginModel loginModel = LoginModel();
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +202,7 @@ class _JioScreenState extends State<JioScreen> {
                                 children: [
                                   Stack(
                                       children:[
-                                        Image.asset("image/ACE2.png"),
+                                        Image.asset("image/ACE.png"),
 
                                         Center(
 
@@ -291,7 +297,8 @@ class _JioScreenState extends State<JioScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left:90,top: 5),
                         child: Text('\u20B9'
-                            ' ${widget.WalletBalance ?? "No balance"}',
+                            // '${widget.WalletBalance}',
+                            "${widget.loginModelData!.data!.walletBalance}",
                             style: TextStyle(fontSize: 24, color: Colors.black)),
                       ),
 
@@ -440,7 +447,7 @@ class _JioScreenState extends State<JioScreen> {
       //                     children: [
       //                       Stack(
       //                           children:[
-      //                         Image.asset("image/ACE2.png"),
+      //                         Image.asset("image/ACE.png"),
       //                         Center(
       //
       //                           child: Padding(

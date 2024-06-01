@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:payoneclick/navBar/BottomNav.dart';
+import 'package:payoneclick/screens/Loginpage.dart';
 
 class splashScreen extends StatefulWidget {
   const splashScreen({super.key});
@@ -51,7 +52,7 @@ class _splashScreenState extends State<splashScreen> {
   }
 
   onDoneLoading() async{
-   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (Context)=>NavBar())); //let   //wtsAirtelScreen  ///NavBar()
+   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (Context)=>Loginpage())); //let   //wtsAirtelScreen  ///NavBar()
   }
 
 

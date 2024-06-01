@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:payoneclick/Api_Services/Api_Service.dart';
 import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
+import 'package:payoneclick/navBar/BottomNav.dart';
 import 'package:payoneclick/screens/home.dart';
 
 class Loginpage extends StatefulWidget {
@@ -146,9 +147,19 @@ class _Loginpage extends State<Loginpage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => home(
-                              WalletBalance: loginModel.data!.walletBalance ?? "No balance",
-                            ),
+                            builder: (context) =>
+                                // NavBar(
+                                //   WalletBalance: loginModel.data!.walletBalance ?? "No balance",
+                                // )
+                            //i wanna add the BottomNavBar
+                              //  home(
+                              // WalletBalance: loginModel.data!.walletBalance ?? "No balance",
+                               //   loginModelData: loginModel,//ye sara date bhej dega
+
+                                //),
+                            NavBar(
+                              loginModelData: loginModel,
+                            )
                           ),
                         );
                       } else {
@@ -171,50 +182,57 @@ class _Loginpage extends State<Loginpage> {
                   ),
                 ),
               ),
+              Container(
+                child: Column(
+                  children: [
+                  //  Text(ApiServices.loginwithModel!)
+                  ],
+                ),
+              )
 
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                  child: Text(
-                    "Forget Password?",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: Text(
-                    "Don't have an Account Yet",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 8),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 5, 10, 0),
-                  child: Text(
-                    "SIGN UP..",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.center,
+              //   child: Padding(
+              //     padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+              //     child: Text(
+              //       "Forget Password?",
+              //       style: TextStyle(
+              //         color: Colors.black,
+              //         fontSize: 16,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Align(
+              //   alignment: Alignment.center,
+              //   child: Padding(
+              //     padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+              //     child: Text(
+              //       "Don't have an Account Yet",
+              //       style: TextStyle(
+              //         color: Colors.black,
+              //         fontSize: 16,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(height: 8),
+              // Align(
+              //   alignment: Alignment.center,
+              //   child: Padding(
+              //     padding: EdgeInsets.fromLTRB(0, 5, 10, 0),
+              //     child: Text(
+              //       "SIGN UP..",
+              //       style: TextStyle(
+              //         color: Colors.black,
+              //         fontSize: 20,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ],

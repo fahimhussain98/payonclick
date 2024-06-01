@@ -3,11 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-import 'package:payoneclick/screens/home.dart';
+import 'package:http/http.dart' as http;
+import 'package:payoneclick/Drawer/MyCustomDrawer.dart';
+
 
 
 
@@ -33,54 +32,90 @@ class _TestingpageState extends State<Testingpage> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text("This is using login API showing data...."),
+        backgroundColor: Colors.transparent,
+        title: Text("APP BAr"),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Stack(children:[
+                Image.asset('image/circleForDrawer.png'),
+                Padding(
+                  padding: const EdgeInsets.only(left: 7,top: 5),
+                  child: Icon(Icons.sort,color: Colors.white,size: 25,),
+                )
+              ]),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
       ),
-      body: Column(
-        children: [
-          TextField(controller:userName1 ,decoration: InputDecoration(hintText: "username"),),
-          TextField(controller:password1 ,decoration: InputDecoration(hintText: "username"),),
-          ElevatedButton(onPressed: (){
-            loginUser();
-          }, child: Text("login"))
+      drawer: MyCustomDrawer(),
 
-    ],
-      ),
     );
-  }
-
-  Future<void> loginUser() async {
-    if (userName1.text.isNotEmpty && password1.text.isNotEmpty) {
-      var url = Uri.parse("http://api.payonclick.in/Vr1.0/74536/DJKIJF09320923JSDFOJDFLMSDS/KVLKMS09232309283KJSDJLWLEEJ203/api/UserLogin");
-
-      String basicAuth = 'webtech#\$%^solution\$\$&&@@&^&july2k21:basic%%##@&&auth&#&#&#&@@#&pasWtS2021';
-      String encodedAuth = 'Basic ' + base64Encode(utf8.encode(basicAuth));
-
-      var response = await http.post(
-        url,
-        headers: {
-          'Authorization': encodedAuth,
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          "userName": userName1.text,
-          "password": password1.text,
-          "tokenKey": "1234",
-          "deviceInfo": "1234"
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        var jsonResponse = jsonDecode(response.body);
-        if (jsonResponse['statuscode'] == 'TXN') {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login failed. Please check your credentials.")));
-        }
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to login with status code: ${response.statusCode}")));
-      }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Both username and password are required.")));
     }
-  }
+
+  
+
 }
+
+
+
+
+
+
+
+
+
+
+//this is push API testin with username and password
+//       body: Column(
+//         children: [
+//           TextField(controller:userName1 ,decoration: InputDecoration(hintText: "username"),),
+//           TextField(controller:password1 ,decoration: InputDecoration(hintText: "username"),),
+//           ElevatedButton(onPressed: (){
+//             loginUser();
+//           }, child: Text("login"))
+//
+//     ],
+//       ),
+//     );
+//   }
+//
+//   Future<void> loginUser() async {
+//     if (userName1.text.isNotEmpty && password1.text.isNotEmpty) {
+//       var url = Uri.parse("http://api.payonclick.in/Vr1.0/74536/DJKIJF09320923JSDFOJDFLMSDS/KVLKMS09232309283KJSDJLWLEEJ203/api/UserLogin");
+//
+//       String basicAuth = 'webtech#\$%^solution\$\$&&@@&^&july2k21:basic%%##@&&auth&#&#&#&@@#&pasWtS2021';
+//       String encodedAuth = 'Basic ' + base64Encode(utf8.encode(basicAuth));
+//
+//       var response = await http.post(
+//         url,
+//         headers: {
+//           'Authorization': encodedAuth,
+//           'Content-Type': 'application/json',
+//         },
+//         body: jsonEncode({
+//           "userName": userName1.text,
+//           "password": password1.text,
+//           "tokenKey": "1234",
+//           "deviceInfo": "1234"
+//         }),
+//       );
+//
+//       if (response.statusCode == 200) {
+//         var jsonResponse = jsonDecode(response.body);
+//         if (jsonResponse['statuscode'] == 'TXN') {
+//           Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
+//         } else {
+//           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login failed. Please check your credentials.")));
+//         }
+//       } else {
+//         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to login with status code: ${response.statusCode}")));
+//       }
+//     } else {
+//       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Both username and password are required.")));
+//     }
+//   }
+// }

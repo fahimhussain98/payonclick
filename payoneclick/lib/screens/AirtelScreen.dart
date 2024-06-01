@@ -373,7 +373,7 @@ class _AirtelScreenState extends State<AirtelScreen> {
                         children: [
                           Stack(
                               children:[
-                            Image.asset("image/ACE2.png"),
+                            Image.asset("image/ACE.png"),
                             Center(
 
                               child: Padding(
@@ -611,7 +611,7 @@ class _AirtelScreenState extends State<AirtelScreen> {
       //                     children: [
       //                       Stack(
       //                           children:[
-      //                         Image.asset("image/ACE2.png"),
+      //                         Image.asset("image/ACE.png"),
       //                         Center(
       //
       //                           child: Padding(

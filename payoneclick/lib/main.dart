@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:payoneclick/navBar/BottomNav.dart';
-
-import 'package:payoneclick/screens/Loginpage.dart';
-import 'package:payoneclick/screens/home.dart';
-import 'package:payoneclick/screens/testingPage.dart';
+import 'package:payoneclick/screens/Reports.dart';
 import 'package:payoneclick/splashScreen/splashScreen.dart';
+
+
+
 
 
 
@@ -26,15 +25,19 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
      // home: HomePage(),
-    //  home: Loginpage(),
+     // home: Loginpage(),
      //   home:home()
       // home: operatorscreen(),
       //home: operatorscreen2(),
-    //  home:  NavBar(), 
-     // home: splashScreen(), //after add the splashScreen
+     // home:  NavBar(),
+      home: splashScreen(), //this is ready page.
      // home: AirtelScreen(),
      // home: JioScreen(),
-      home: Testingpage(),//ab ye me git se update kr rha hun check kro 3:44 mint
+      //home: Testingpage(),
+     // home: walletScreen(),
+      //home: ProfilleScreen(),
+      //home: SuppordScreen(),
+      //home:ReportScreen()
     );
   }
 }
