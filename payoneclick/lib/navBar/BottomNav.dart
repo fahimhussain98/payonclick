@@ -11,11 +11,11 @@ import 'package:payoneclick/screens/home.dart';
 
 class NavBar extends StatefulWidget {
  // final String? WalletBalance;
-  final LoginModel loginModelData;
+  final LoginModel loginModelData; // ye data  login-> bottomNavBar -> home -> jioScreen
 
   const NavBar({
     Key? key,
-    required this.loginModelData,
+    required this.loginModelData,// ye data  login-> bottomNavBar -> home -> jioScreen
   }) : super(key: key);
 
   @override
@@ -31,9 +31,9 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
-      home(loginModelData: widget.loginModelData),
+      home (),                    //(loginModelData: widget.loginModelData),// ye data  login-> bottomNavBar -> home -> jioScreen
       walletScreen(),
-      ProfilleScreen(),
+      ProfilleScreen(loginModelData: widget.loginModelData),
       ReportScreen(),
       SuppordScreen(),
     ];
@@ -65,7 +65,7 @@ class _NavBarState extends State<NavBar> {
           ),
           CurvedNavigationBarItem(
             child:  Icon(Icons.headset_mic_rounded,color: Colors.white,),
-            label: 'History',labelStyle: TextStyle(color: Colors.white),
+            label: 'Support',labelStyle: TextStyle(color: Colors.white),
           ),
         ],
         index: _pageIndex,

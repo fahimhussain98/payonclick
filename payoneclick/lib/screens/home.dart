@@ -9,12 +9,14 @@ import 'package:payoneclick/screens/Loginpage.dart';
 
 class home extends StatefulWidget {
  // final String? WalletBalance;
-  final LoginModel? loginModelData;
+ // final LoginModel? loginModelData; // ye data login -> home -> jioScreen
 
   // const home({super.key,
   //   //this.WalletBalance,
   //   this.loginModelData});
-  const home({Key? key, required this.loginModelData}) : super(key: key);
+  const home({Key? key,
+   //  this.loginModelData // ye data login -> home -> jioScreen
+  }) : super(key: key);
 
 
   @override
@@ -454,7 +456,7 @@ class _homeState extends State<home> {
                                           showStateTextField: true,
                                            //WalletBalance:loginModel.data!.walletBalance,
                                          // WalletBalance: widget.WalletBalance,
-                                            loginModelData: widget.loginModelData
+                                          //  loginModelData: widget.loginModelData // ye data login -> home -> jioScreen
                                         ),),
 
                                     );
@@ -494,11 +496,11 @@ class _homeState extends State<home> {
                                   onTap: () {
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=> JioScreen(
                                       showStateTextField: false,
-                                        loginModelData: widget.loginModelData
-                                     // WalletBalance: widget.WalletBalance,
+                                      //  loginModelData: widget.loginModelData //// ye data login -> home -> jioScreen
+
                                     )));
                                     setState(() {
-                                      showStateTextField = false; // Show the state text field
+                                      showStateTextField = false; // Show the state text field  fetchMainWB() se
                                     });
 
                                   },

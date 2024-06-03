@@ -120,7 +120,7 @@
 // }
 
 class LoginModel {
-  String? statuscode;
+  String? statuscode; //?
   String? status;
   Data? data;
 

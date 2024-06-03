@@ -77,7 +77,7 @@ class _ReportScreenState extends State<ReportScreen> {
           ),
           Column(
             children: [
-              Center(child: Text("PROFILE",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),)),
+              Center(child: Text(" Reports ",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),)),
               SizedBox(height: 25,),
 
               Container(

@@ -1,16 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
 import 'package:payoneclick/Drawer/MyCustomDrawer.dart';
 
 class ProfilleScreen extends StatefulWidget {
-  const ProfilleScreen({super.key});
+  final LoginModel loginModelData;
+
+  const ProfilleScreen({Key? key,
+     required this.loginModelData
+  }): super(key: key);
 
   @override
   State<ProfilleScreen> createState() => _ProfilleScreenState();
 }
 
 class _ProfilleScreenState extends State<ProfilleScreen> {
+ // LoginModel loginModel =LoginModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +49,8 @@ class _ProfilleScreenState extends State<ProfilleScreen> {
               ),
               Spacer(),
               Container(
-                width: 40, // Adjust the width of the container
-                height: 40, // Adjust the height of the container
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle, // This makes the container circular
                   color: Colors.white,
@@ -100,35 +106,44 @@ class _ProfilleScreenState extends State<ProfilleScreen> {
                       "User Type",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 5),
                   Container(
-                    margin: EdgeInsets.only(left: 20,right: 20),
+                    margin: EdgeInsets.only(left: 20, right: 20),
                     color: Colors.white,
-                    child: TextField(
+                    child: TextFormField(
+                      initialValue: '${widget.loginModelData?.data?.userType ?? 'Unknown'}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      enabled: false, // Make the TextFormField read-only
                       decoration: InputDecoration(
-                        hintText: "Retailer",
-                        hintStyle: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.normal,
-                        ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the default border color to gray
+                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                       ),
                     ),
                   ),
+
+
+
+
                   SizedBox(height: 10),
             
                   Padding(
@@ -137,30 +152,35 @@ class _ProfilleScreenState extends State<ProfilleScreen> {
                       "Name",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 5),
                   Container(
-                    margin:  EdgeInsets.only(left: 20,right: 20),
+                    margin: EdgeInsets.only(left: 20, right: 20),
                     color: Colors.white,
-                    child: TextField(
+                    child: TextFormField(
+                      initialValue: '${widget.loginModelData?.data?.name ?? 'Unknown'}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      enabled: false, // Make the TextFormField read-only
                       decoration: InputDecoration(
-                        hintText: "Enter the Name",
-                        hintStyle: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.normal,
-                        ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the default border color to gray
+                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                       ),
@@ -174,30 +194,35 @@ class _ProfilleScreenState extends State<ProfilleScreen> {
                       "Contact No",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 5),
                   Container(
-                    margin:  EdgeInsets.only(left: 20,right: 20),
+                    margin: EdgeInsets.only(left: 20, right: 20),
                     color: Colors.white,
-                    child: TextField(
+                    child: TextFormField(
+                      initialValue: '${widget.loginModelData?.data?.mobileNo ?? 'Unknown'}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      enabled: false, // Make the TextFormField read-only
                       decoration: InputDecoration(
-                        hintText: "Enter the Phone Number",
-                        hintStyle: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.normal,
-                        ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the default border color to gray
+                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                       ),
@@ -211,30 +236,35 @@ class _ProfilleScreenState extends State<ProfilleScreen> {
                       "Email ID",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 5),
                   Container(
-                    margin:  EdgeInsets.only(left: 20,right: 20),
+                    margin: EdgeInsets.only(left: 20, right: 20),
                     color: Colors.white,
-                    child: TextField(
+                    child: TextFormField(
+                      initialValue: '${widget.loginModelData?.data?.emailID ?? 'Unknown'}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      enabled: false, // Make the TextFormField read-only
                       decoration: InputDecoration(
-                        hintText: "Enter the Email ID",
-                        hintStyle: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.normal,
-                        ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the default border color to gray
+                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                       ),
@@ -247,71 +277,81 @@ class _ProfilleScreenState extends State<ProfilleScreen> {
                       "Address",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 5),
                   Container(
-                    margin:  EdgeInsets.only(left: 20,right: 20),
+                    margin: EdgeInsets.only(left: 20, right: 20),
                     color: Colors.white,
-                    child: TextField(
+                    child: TextFormField(
+                      initialValue: '${widget.loginModelData?.data?.address ?? 'Unknown'}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      enabled: false, // Make the TextFormField read-only
                       decoration: InputDecoration(
-                        hintText: "Enter the State",
-                        hintStyle: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.normal,
-                        ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the default border color to gray
+                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                       ),
                     ),
                   ),
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+                  SizedBox(height: 10),
                   Padding(
                     padding:  EdgeInsets.only(left: 20,right: 20),
                     child: Text(
                       "Aadhar No.",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 5),
                   Container(
-                    margin:  EdgeInsets.only(left: 20,right: 20),
+                    margin: EdgeInsets.only(left: 20, right: 20),
                     color: Colors.white,
-                    child: TextField(
+                    child: TextFormField(
+                      initialValue: '${widget.loginModelData?.data?.aadharNo ?? 'Unknown'}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      enabled: false, // Make the TextFormField read-only
                       decoration: InputDecoration(
-                        hintText: "Enter Aadhar Number",
-                        hintStyle: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.normal,
-                        ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the default border color to gray
+                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                       ),
@@ -324,30 +364,35 @@ class _ProfilleScreenState extends State<ProfilleScreen> {
                       "Pan No.",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 5),
                   Container(
-                    margin:  EdgeInsets.only(left: 20,right: 20),
+                    margin: EdgeInsets.only(left: 20, right: 20),
                     color: Colors.white,
-                    child: TextField(
+                    child: TextFormField(
+                      initialValue: '${widget.loginModelData?.data?.panCardNo ?? 'Unknown'}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      enabled: false, // Make the TextFormField read-only
                       decoration: InputDecoration(
-                        hintText: "Enter Pan Card Number",
-                        hintStyle: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.normal,
-                        ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the default border color to gray
+                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
                         ),
                         contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                       ),

@@ -1,20 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:payoneclick/Api_Services/Api_Service.dart';
 import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
+import 'package:payoneclick/Api_Services/Api_models/MainWBModel.dart';
 
 class JioScreen extends StatefulWidget {
   final bool showStateTextField;
  // final String? WalletBalance;
-  final LoginModel? loginModelData; //isse sara data aa rhe hai
-  // const JioScreen({
-  //   Key? key, this.showStateTextField = true,
-  //  //  this.WalletBalance,
-  //   this.loginModelData,
-  // }) : super(key: key);
+  //final LoginModel? loginModelData; //isse sara data aa rhe hai login API se
+
+
+
+
+
+
+
   const JioScreen({
     Key? key,
     required this.showStateTextField,
-    required this.loginModelData,
+   // required this.loginModelData,
   }) : super(key: key);
 
 
@@ -25,6 +29,51 @@ class JioScreen extends StatefulWidget {
 class _JioScreenState extends State<JioScreen> {
   var showStateTextField = false;
   var dropdownValue;
+
+  MainWBModel? MWBmodel;
+  bool isLoading = true;
+  final ApiServices apiServices = ApiServices();
+
+  @override
+  void initState() {
+    super.initState();
+    fetch_MainWB();
+
+  }
+  Future<void> fetch_MainWB() async {
+    MWBmodel = await apiServices.fetchMainWB();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+
+  String? _selectedState;
+
+  final List<String> _states = [
+    "Assam",
+    "Bihar Jharkhand",
+    "Chennai",
+    "Delhi NCR",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jammu Kashmir",
+    "Karnataka",
+    "Kerala",
+    "Kolkata",
+    "Madhya Pradesh Chhattisgarh",
+    "Maharashtra Goa",
+    "Mumbai",
+    "North East",
+    "Orissa",
+    "Punjab",
+    "Rajasthan",
+    "Tamil Nadu",
+    "UP East",
+    "UP West",
+    "West Bengal"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -111,10 +160,18 @@ class _JioScreenState extends State<JioScreen> {
                           Text("Subscribe ID",style: TextStyle(fontSize: 14,fontWeight: FontWeight.normal,color: Colors.black,)),
                           SizedBox(height: 10,),
                           SizedBox(
-                            height: 55, // Specify the desired height here
+                            height: 50, // Specify the desired height here
                             child: TextField(
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey,width: 1), // Set the default border color to gray
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                                ),
                               ),
                             ),
                           ),
@@ -162,18 +219,34 @@ class _JioScreenState extends State<JioScreen> {
                                 Text(
                                   "State",
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.normal,
                                     color: Colors.black,
                                   ),
                                 ),
                                 SizedBox(height: 5),
-                                SizedBox(
-                                  height: 55,
-                                  child: TextField(
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey, width: 1),
+                                  ),
+                                  child: DropdownButtonFormField<String>(
+                                    value: _selectedState,
                                     decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
+                                      contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 10.0),
+                                      border: InputBorder.none,
                                     ),
+                                    items: _states.map((String state) {
+                                      return DropdownMenuItem<String>(
+                                        value: state,
+                                        child: Text(state),
+                                      );
+                                    }).toList(),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        _selectedState = newValue;
+                                      });
+                                    },
+                                    hint: Text("Select a State"),
                                   ),
                                 ),
                                 SizedBox(height: 5),
@@ -185,10 +258,18 @@ class _JioScreenState extends State<JioScreen> {
                           Text("Amount ",style: TextStyle(fontSize: 14,fontWeight: FontWeight.normal,color: Colors.black,)),
                           SizedBox(height: 5,),
                           SizedBox(
-                            height: 55, // Specify the desired height here
+                            height: 50, // Specify the desired height here
                             child: TextField(
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey), // Set the default border color to gray
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is not focused
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey), // Set the border color when the field is focused
+                                ),
                               ),
                             ),
                           ),
@@ -260,6 +341,58 @@ class _JioScreenState extends State<JioScreen> {
           Align(
             alignment: Alignment.topCenter,
             child: Container(
+              // color: Colors.amber,
+              width: 230,
+              height: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+
+                children: [
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only( left: 5,top: 10),
+                        child: Text("Wallet Balance  ",style: TextStyle(fontSize: 15,)),
+                      ),
+                      // Text("\u20B9 ${MWBmodel?.data?.userBalance ?? '0.00'}"),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Text('\u20B9'
+                        // '${widget.WalletBalance}',
+                        // "${widget.loginModelData!.data!.walletBalance}",// this is not checking of the null value
+                        //   '${widget.loginModelData!.data?.walletBalance ?? '0.00'}', //// ye data  login-> bottomNavBar -> home -> jioScreen
+                            '${MWBmodel?.data?.userBalance ?? '0.00'}', // ye data alag API se se
+
+                            style: TextStyle(fontSize: 20, color: Colors.black)),
+                      ),
+
+
+
+
+                    ],
+                  ),
+                  Image.asset("image/walletIconIn.png",height: 80,width: 80,),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
               margin: EdgeInsets.only(top: 90),
               child: CircleAvatar(
                 backgroundColor: Colors.grey[50],
@@ -270,45 +403,9 @@ class _JioScreenState extends State<JioScreen> {
             ),
           ),
 
-          Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              margin: EdgeInsets.only(top: 0,),
-
-              height: 110,
-              width: double.infinity,
-              // width: 300,
-              //  color: Colors.indigoAccent,
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 45),
-                    child: Image.asset("image/jioSIcon.png",
-                      // height: 400,
-                      //   width: 200,
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25,left: 90),
-                        child: Text("Wallet Balance",style: TextStyle(fontSize: 15,),),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left:90,top: 5),
-                        child: Text('\u20B9'
-                            // '${widget.WalletBalance}',
-                            "${widget.loginModelData!.data!.walletBalance}",
-                            style: TextStyle(fontSize: 24, color: Colors.black)),
-                      ),
 
 
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+
 
 
 
@@ -316,6 +413,7 @@ class _JioScreenState extends State<JioScreen> {
 
 
       ),
+
 
 
       // body: Stack(
